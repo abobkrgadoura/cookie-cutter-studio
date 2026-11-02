@@ -1,0 +1,230 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root,
+[data-theme="dark"] {
+  --bg-app: #12121a;
+  --bg-base: #12121a;
+  --bg-header: #16161f;
+  --bg-sidebar: #1a1a24;
+  --bg-canvas: #1c1c28;
+  --bg-input: #252533;
+  --bg-input-hover: #2c2c3c;
+  --bg-card: #222230;
+  --bg-elevated: #2a2a3a;
+  --bg-menu: #2d2d3d;
+  --bg-highlight: #3d2a32;
+  --text-primary: #f4f4f7;
+  --text-secondary: #a8a8b8;
+  --text-muted: #7a7a8c;
+  --text-accent: #f0a8a0;
+  --text-danger: #e07070;
+  --border: #2e2e3e;
+  --border-strong: #3a3a4e;
+  --accent: #c084fc;
+  --accent-pink: #e07a86;
+  --toggle-on: #7c3aed;
+  --toggle-off: #4a4a5a;
+  --slider-track: #4b5563;
+  --slider-thumb: #7c3aed;
+  --surface: #1c1d27;
+  --surface-light: #2c2d3a;
+  --shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+  --canvas-vignette: radial-gradient(ellipse at 50% 42%, #2a2438 0%, #15151e 72%);
+}
+
+[data-theme="light"] {
+  --bg-app: #f4f4f8;
+  --bg-base: #f4f4f8;
+  --bg-header: #ffffff;
+  --bg-sidebar: #f7f7fb;
+  --bg-canvas: #ececf3;
+  --bg-input: #ffffff;
+  --bg-input-hover: #f0f0f6;
+  --bg-card: #ffffff;
+  --bg-elevated: #ffffff;
+  --bg-menu: #ffffff;
+  --bg-highlight: #fde8ea;
+  --text-primary: #1a1a24;
+  --text-secondary: #5a5a6e;
+  --text-muted: #8888a0;
+  --text-accent: #c45a62;
+  --text-danger: #d04040;
+  --border: #e2e2ea;
+  --border-strong: #d0d0dc;
+  --accent: #9333ea;
+  --accent-pink: #e07a86;
+  --toggle-on: #7c3aed;
+  --toggle-off: #c8c8d4;
+  --slider-track: #e5e7eb;
+  --slider-thumb: #7c3aed;
+  --shadow: 0 8px 28px rgba(20, 16, 40, 0.12);
+  --canvas-vignette: radial-gradient(ellipse at 50% 42%, #ffffff 0%, #e4e4ee 72%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-app);
+  color: var(--text-primary);
+  overflow: hidden;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+input[type='number'] {
+  min-width: 0;
+  max-width: 100%;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Native range tracks disappear on the dark sidebar. Paint an explicit
+   track and thumb so both stay visible in either theme. */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    var(--slider-thumb) var(--range-pct, 0%),
+    var(--slider-track) var(--range-pct, 0%)
+  );
+  accent-color: var(--slider-thumb);
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+  height: 0.5rem;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  margin-top: -0.25rem;
+  border: 2px solid #fff;
+  border-radius: 999px;
+  background: var(--slider-thumb);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+}
+
+input[type='range']::-moz-range-track {
+  height: 0.5rem;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+}
+
+input[type='range']::-moz-range-progress {
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--slider-thumb);
+}
+
+input[type='range']::-moz-range-thumb {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid #fff;
+  border-radius: 999px;
+  background: var(--slider-thumb);
+  cursor: pointer;
+}
+
+button {
+  cursor: pointer;
+}
+
+.stencil-checker {
+  background-color: var(--bg-canvas);
+  background-image:
+    linear-gradient(45deg, var(--border) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--border) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--border) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--border) 75%);
+  background-size: 18px 18px;
+  background-position:
+    0 0,
+    0 9px,
+    9px -9px,
+    -9px 0;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.field-label {
+  font-size: 10px;
+  letter-spacing: 0.01em;
+  color: var(--text-muted);
+  line-height: 1.2;
+}
+
+.field-value {
+  font-size: 14px;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.sidebar-section-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.help-note {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.45;
+  font-style: italic;
+}
+
+@keyframes settings-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.settings-overlay {
+  animation: settings-fade-in 180ms ease;
+}

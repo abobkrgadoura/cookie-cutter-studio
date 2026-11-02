@@ -1,0 +1,8 @@
+project_id = "cookie-cutter-studio"
+
+[functions.paymob-checkout]
+verify_jwt = true
+
+# Paymob calls this server-to-server and does not send a Supabase JWT.
+[functions.webhook-paymob]
+verify_jwt = false
